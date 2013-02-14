@@ -1,0 +1,7 @@
+## Interface: 50100
+## Title: Custom Tooltips
+## Author: Choonster
+## Notes: Displays custom tooltips for macros.
+## Version: 1.0
+
+core.lua
