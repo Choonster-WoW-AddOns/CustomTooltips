@@ -42,7 +42,7 @@ local TOOLTIPS = {
 -------------------
 
 -- Process the tooltip definitions to normalise them.
-for name, data in TOOLTIPS do
+for name, data in pairs(TOOLTIPS) do
 	local body = data.body
 	body = body:gsub("^\t+", "") -- Strip any tabs from the start of the string
 	body = body:gsub("\n\t+", "\n") -- Strip any tabs from the start of each line
