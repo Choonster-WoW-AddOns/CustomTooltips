@@ -40,9 +40,11 @@ local TOOLTIPS = {
 -------------------
 -- END OF CONFIG --
 -------------------
+local oldTooltips = TOOLTIPS
+TOOLTIPS = {} -- Make a new table to store the normalised tooltips in (we can't add new keys when iterating with pairs)
 
 -- Process the tooltip definitions to normalise them.
-for name, data in pairs(TOOLTIPS) do
+for name, data in pairs(oldTooltips) do
 	local body = data.body
 	body = body:gsub("^\t+", "") -- Strip any tabs from the start of the string
 	body = body:gsub("\n\t+", "\n") -- Strip any tabs from the start of each line
@@ -50,9 +52,10 @@ for name, data in pairs(TOOLTIPS) do
 	data.body = body
 	
 	-- Convert the keys to uppercase
-	TOOLTIPS[name] = nil
 	TOOLTIPS[name:upper()] = data
 end
+
+oldTooltips = nil -- Allow the old table to be garbage collected.
 
 local function ActionButton_SetTooltip_Hook(self)
 	local actionType, id, subType = GetActionInfo(self.action)
