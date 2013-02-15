@@ -7,13 +7,16 @@ Tooltip Format:
 		body = "Body Text",
 	},
 	
--- NAME is a unique name for this tooltip, used for the #customtooltip TooltipName metacommand in your macro.
+-- NAME is a unique name for this tooltip, used for the "#customtooltip TooltipName" metacommand in your macro (without the quotes).
    This name is case-insensitive, so ExampleName and EXAMPLENAME will conflict with each other.
 -- "Heading Text" is the text to display as the heading of the tooltip, wrapped in "double quotes" or 'single quotes'.
 -- "Body Text" is the text to display as the body of the tooltip. It can be wrapped in "double quotes", 'single quotes' or [[double square brackets]].
    This text will be wrapped to fit in the tooltip; but if you still need to have an explicit linebreak in the body, use double square brackets.
    A linebreak directly after the opening square brackets or directly before the closing brackets will be ignored; as will any tab characters at the start of a line.
--- You must put a comma after the closing quote/bracket of the heading and the body as well as after the closing brace of the tooltip definition, as shown in the example.
+-- You must put a comma after the closing quote/bracket of the heading and the body as well as after the closing brace of the tooltip definition, as shown in the examples.
+
+-- You can also put your tooltip in the macro itself using "#tooltipdesc Heading Text^Body Text".
+-- This must be on a single line, but you can insert a linebreak using "\n" (without the quotes).
 
 ]===]
 
@@ -64,9 +67,19 @@ local function ActionButton_SetTooltip_Hook(self)
 	local macroText = GetMacroBody(id)
 	
 	local tooltipName = macroText:match("#customtooltip ([^\n]+)")
-	tooltipName = tooltipName and tooltipName:upper()
-	local tooltipData = TOOLTIPS[tooltipName]
-	if not tooltipData then return end
+	local heading, body;
+	if tooltipName then
+		local tooltipData = TOOLTIPS[tooltipName:upper()]
+		if tooltipData then
+			heading, body = tooltipData.heading, tooltipData.body
+		end
+	else
+		heading, body = macroText:match("#tooltipdesc ([^\n]+)^([^\n]+)") -- #tooltipdesc heading text^body text
+	end
+	
+	if not (heading and body) then return end
+	
+	body = body:gsub("\\n", "\n") -- Replace escaped newlines with actual newlines
 	
 	local tooltip = GameTooltip
 	tooltip:ClearLines()
