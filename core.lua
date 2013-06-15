@@ -87,8 +87,8 @@ local function ActionButton_SetTooltip_Hook(self)
 	-- Anchors the tooltip to the action button and positions it
 	GameTooltip_SetDefaultAnchor(tooltip, self)
 	
-	tooltip:AddLine(tooltipData.heading) -- Use default yellow text colour, don't wrap the text
-	tooltip:AddLine(tooltipData.body, 1,1,1, true) -- Use white text, wrap the text
+	tooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
+	tooltip:AddLine(body, nil,nil,nil, true) -- Use the default yellow text colour, wrap the text
 	tooltip:Show()
 end
 

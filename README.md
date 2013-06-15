@@ -15,6 +15,5 @@ Installation
 2. Download the CustomTooltips.toc and core.lua files by right clicking the links below and selecting "Save link as...".
 	* [CustomTooltips.toc](https://raw.github.com/Choonster/CustomTooltips/master/CustomTooltips.toc)
 	* [core.lua](https://raw.github.com/Choonster/CustomTooltips/master/core.lua)
-
 	
 3. Save them to the _CustomTooltips_ folder and restart WoW.
