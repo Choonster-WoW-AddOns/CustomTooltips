@@ -4,3 +4,6 @@ enable-nolib-creation: no
 
 tools-used:
     - findglobals
+
+move-folders:
+    CustomTooltips/CustomTooltips_Bartender4: CustomTooltips_Bartender4
