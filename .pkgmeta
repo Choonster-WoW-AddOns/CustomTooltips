@@ -1,0 +1,6 @@
+package-as: CustomTooltips
+
+enable-nolib-creation: no
+
+tools-used:
+    - findglobals

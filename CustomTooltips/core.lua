@@ -43,6 +43,10 @@ local TOOLTIPS = {
 -------------------
 -- END OF CONFIG --
 -------------------
+
+-- List globals here for Mikk's FindGlobals script
+-- GLOBALS: CustomTooltips_DisplayTooltip, GameTooltip_SetDefaultAnchor, GetActionInfo, GetMacroBody
+
 local oldTooltips = TOOLTIPS
 TOOLTIPS = {} -- Make a new table to store the normalised tooltips in (we can't add new keys when iterating with pairs)
 
@@ -60,14 +64,12 @@ end
 
 oldTooltips = nil -- Allow the old table to be garbage collected.
 
-local function ActionButton_SetTooltip_Hook(self)
-	local actionType, id, subType = GetActionInfo(self.action)
-	if actionType ~= "macro" then return end
-	
-	local macroText = GetMacroBody(id)
-	
+local GameTooltip = GameTooltip
+
+-- Display a custom tooltip anchored to the supplied button based on the supplied macro text
+function CustomTooltips_DisplayTooltip(button, macroText)
 	local tooltipName = macroText:match("#customtooltip ([^\n]+)")
-	local heading, body;
+	local heading, body
 	if tooltipName then
 		local tooltipData = TOOLTIPS[tooltipName:upper()]
 		if tooltipData then
@@ -81,15 +83,20 @@ local function ActionButton_SetTooltip_Hook(self)
 	
 	body = body:gsub("\\n", "\n") -- Replace escaped newlines with actual newlines
 	
-	local tooltip = GameTooltip
-	tooltip:ClearLines()
+	GameTooltip:ClearLines()
 	
 	-- Anchors the tooltip to the action button and positions it
-	GameTooltip_SetDefaultAnchor(tooltip, self)
+	GameTooltip_SetDefaultAnchor(GameTooltip, button)
 	
-	tooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
-	tooltip:AddLine(body, nil,nil,nil, true) -- Use the default yellow text colour, wrap the text
-	tooltip:Show()
+	GameTooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
+	GameTooltip:AddLine(body, nil,nil,nil, true) -- Use the default yellow text colour, wrap the text
+	GameTooltip:Show()
 end
 
-hooksecurefunc("ActionButton_SetTooltip", ActionButton_SetTooltip_Hook)
+hooksecurefunc("ActionButton_SetTooltip", function(self)
+	local actionType, id, subType = GetActionInfo(self.action)
+	if actionType ~= "macro" then return end
+	
+	local macroText = GetMacroBody(id)
+	CustomTooltips_DisplayTooltip(self, macroText)	
+end)
