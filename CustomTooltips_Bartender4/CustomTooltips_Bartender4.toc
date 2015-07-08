@@ -1,8 +1,0 @@
-## Interface: 60000
-## Title: Custom Tooltips: Bartender4
-## Author: Choonster
-## Notes: Displays custom tooltips for macros on Bartender bars.
-## Version: @project-version@
-## Dependencies: CustomTooltips, Bartender4
-
-core.lua

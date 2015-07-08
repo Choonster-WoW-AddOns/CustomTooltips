@@ -6,4 +6,4 @@ tools-used:
     - findglobals
 
 move-folders:
-    CustomTooltips/CustomTooltips_Bartender4: CustomTooltips_Bartender4
+    CustomTooltips/CustomTooltips_LibActionButton: CustomTooltips_LibActionButton

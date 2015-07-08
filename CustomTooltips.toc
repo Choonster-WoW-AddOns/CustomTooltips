@@ -1,4 +1,4 @@
-## Interface: 60000
+## Interface: 60200
 ## Title: Custom Tooltips
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros.
