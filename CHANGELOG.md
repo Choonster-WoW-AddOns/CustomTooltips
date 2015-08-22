@@ -1,3 +1,7 @@
+## 1.06
+- Add ButtonForge module
+- Use button:HookScript directly in LAB and ElvUI modules
+
 ## 1.05
 - Split ElvUI module from LibActionButton module
 	- As of 8.26, ElvUI uses a modified version of LibActionButton
