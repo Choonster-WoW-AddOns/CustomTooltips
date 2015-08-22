@@ -21,10 +21,6 @@ local function Button_OnEnter_Hook(self)
 	end
 end
 
--- LibActionButton replaces the metatable of its buttons, so we need to retrieve the HookScript method from a regular CheckButton
-local HookScript = getmetatable(CreateFrame("CheckButton")).__index.HookScript
-
 LibActionButton.RegisterCallback("CustomTooltips_ElvUI", "OnButtonCreated", function(_, button)
-	-- HookScript(button, "OnEnter", Button_OnEnter_Hook)
 	button:HookScript("OnEnter", Button_OnEnter_Hook)
 end)
