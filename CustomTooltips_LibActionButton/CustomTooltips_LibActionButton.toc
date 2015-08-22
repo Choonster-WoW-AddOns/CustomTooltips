@@ -6,4 +6,4 @@
 ## Dependencies: CustomTooltips
 ## OptionalDependencies: Bartender4
 
-core.lua
+CustomTooltips_LibActionButton.lua
