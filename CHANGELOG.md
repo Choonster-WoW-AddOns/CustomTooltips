@@ -1,3 +1,7 @@
+## 1.05
+- Split ElvUI module from LibActionButton module
+	- As of 8.26, ElvUI uses a modified version of LibActionButton
+
 ## 1.04
 - Rename CustomTooltips_Bartender4 to CustomTooltips_LibActionButton
     - It already supported any LibActionButton button, it just had Bartender4 as a required dependency

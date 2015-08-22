@@ -1,0 +1,8 @@
+## Interface: 60200
+## Title: Custom Tooltips: ElvUI
+## Author: Choonster
+## Notes: Displays custom tooltips for macros on ElvUI action buttons.
+## Version: @project-version@
+## Dependencies: CustomTooltips, ElvUI
+
+core.lua

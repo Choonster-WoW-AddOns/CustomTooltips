@@ -1,9 +1,9 @@
 ## Interface: 60200
 ## Title: Custom Tooltips: LibActionButton
 ## Author: Choonster
-## Notes: Displays custom tooltips for macros on LibActionButton action buttons. LAB is used by Bartender4, ElvUI and various other action bar AddOns.
+## Notes: Displays custom tooltips for macros on LibActionButton action buttons. LAB is used by Bartender4 and various other action bar AddOns.
 ## Version: @project-version@
 ## Dependencies: CustomTooltips
-## OptionalDependencies: Bartender4, ElvUI
+## OptionalDependencies: Bartender4
 
 core.lua
