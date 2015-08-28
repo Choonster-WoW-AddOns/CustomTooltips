@@ -7,3 +7,5 @@ tools-used:
 
 move-folders:
     CustomTooltips/CustomTooltips_LibActionButton: CustomTooltips_LibActionButton
+    CustomTooltips/CustomTooltips_ElvUI: CustomTooltips_ElvUI
+    CustomTooltips/CustomTooltips_ButtonForge: CustomTooltips_ButtonForge
