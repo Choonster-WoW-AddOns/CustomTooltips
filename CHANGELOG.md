@@ -1,3 +1,6 @@
+## 1.07
+- Fix ElvUI and ButtonForge modules not being valid AddOns in packaged release
+
 ## 1.06
 - Add ButtonForge module
 - Use button:HookScript directly in LAB and ElvUI modules
