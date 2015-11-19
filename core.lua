@@ -207,7 +207,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 		end
 	else
 		-- Do we have an inline tooltip definition?
-		if not string.find(macroText, "#tooltipdesc") then return end
+		if not macroText:find("#tooltipdesc") then return end
 		
 		-- We do have an inline tooltip definition (use a non-greedy approach to the separator - heading ends at
 		-- the first ^, and all subsequent ^ will be part of the body)
