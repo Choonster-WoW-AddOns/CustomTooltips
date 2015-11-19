@@ -1,3 +1,6 @@
+## 1.09
+- Tell Curse to use manual changelog
+
 ## 1.08
 - Add custom text colour for each line of the tooltip body
 
