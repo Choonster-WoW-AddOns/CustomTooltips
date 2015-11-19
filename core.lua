@@ -75,7 +75,7 @@ local TOOLTIPS = {
 -------------------
 
 -- List globals here for Mikk's FindGlobals script
--- GLOBALS: CustomTooltips_DisplayTooltip, GameTooltip_SetDefaultAnchor, GetActionInfo, GetMacroBody
+-- GLOBALS: unpack, type, assert, CustomTooltips_DisplayTooltip, GameTooltip_SetDefaultAnchor, GetActionInfo, GetMacroBody
 
 -- Do not change this
 local ERROR_SYNTAX_TOOLTIP = {
