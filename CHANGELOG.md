@@ -1,3 +1,6 @@
+## 1.08
+- Add custom text colour for each line of the tooltip body
+
 ## 1.07
 - Fix ElvUI and ButtonForge modules not being valid AddOns in packaged release
 
