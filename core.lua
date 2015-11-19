@@ -12,31 +12,31 @@ REQUIRED FIELDS
    quotes). This name is case-insensitive, so ExampleName and EXAMPLENAME will conflict with each other.
 -- "Heading Text" is the text to display as the heading of the tooltip, wrapped in "double quotes" or 'single quotes'.
    Heading text will always be in white, and will not wrap.
--- "Body Text Line" is the text for a single line of the tooltip.  Optionally, the color of the text for that line may be
-   specified. Each line may have a different color specified. If no color is included, that line of text will use the default
-   yellow text color. To see how to specify multiple lines, see the examples below.
+-- "Body Text Line" is the text for a single line of the tooltip.  Optionally, the colour of the text for that line may be
+   specified. Each line may have a different colour specified. If no colour is included, that line of text will use the default
+   yellow text colour. To see how to specify multiple lines, see the examples below.
    
 OPTIONAL FIELDS
--- "RED" is the red component of the line color. This value must be in the interval [0.0, 1.0]. If one color component is
+-- "RED" is the red component of the line colour. This value must be in the interval [0.0, 1.0]. If one colour component is
    specified, all three must be specified.
--- "GREEN" is the green component of the line color. This value must be in the interval [0.0, 1.0]. If one color component is
+-- "GREEN" is the green component of the line colour. This value must be in the interval [0.0, 1.0]. If one colour component is
    specified, all three must be specified.
--- "BLUE" is the blue component of the line color. This value must be in the interval [0.0, 1.0]. If one color component is
+-- "BLUE" is the blue component of the line colour. This value must be in the interval [0.0, 1.0]. If one colour component is
    specified, all three must be specified.
 
 EXAMPLES
 -- See below for the three examples.
--- The first example shows how multiple lines can be created in a tooltip with different colors.
--- The second example is a simple example for a tooltip with default colors and only one line of text.
+-- The first example shows how multiple lines can be created in a tooltip with different colours.
+-- The second example is a simple example for a tooltip with default colours and only one line of text.
 -- The third example is an example of a tooltip that will generate a syntax error. Try using this tooltip in-game to see
    what information is provided when the tooltip is configured improperly. DO NOT USE THIS EXAMPLE AS A BASIS FOR NEW
    TOOLTIPS. IT IS HERE TO SHOW YOU WHAT NOT TO DO.
    
    
 ADDITIONAL NOTES
--- If you do not want any custom colors, you can create custom tooltips in the macro that use them. The format for this is:
+-- If you do not want any custom colours, you can create custom tooltips in the macro that use them. The format for this is:
    #tooltipdesc heading^body
-   To add line breaks into this, add the string '\n' (no quotes) into the body. Custom colors are disabled for inline tooltip
+   To add line breaks into this, add the string '\n' (no quotes) into the body. Custom colours are disabled for inline tooltip
    definitions. Furthermore, '\n' only works for inline definitions, as this configuration file uses a different means to
    specify line breaks. (See the first example for more details.)
 ]===]
@@ -47,13 +47,13 @@ local TOOLTIPS = {
 	Example = {
 		heading = "Example Tooltip Heading",
 		body = {{"This is an example tooltip. The text will be in red.", 1.0, 0.0, 0.0},
-		        {"This text is on a separate line. The text will have the default yellow text color."},
+		        {"This text is on a separate line. The text will have the default yellow text colour."},
 		        {"This is the third line of the tooltip. It will be blue.", 0.0, 0.0, 1.0}}
 	},
 	
 	ExampleTwo = {
 		heading = "Second Example Heading",
-		body = {{"This is a second example tooltip; it doesn't have any linebreaks in it. It uses the default yellow color."}}
+		body = {{"This is a second example tooltip; it doesn't have any linebreaks in it. It uses the default yellow colour."}}
 	},
 	
 	-- This is a test example, to ensure that the syntax checker is working properly
@@ -149,7 +149,7 @@ local function CheckSyntax(name, data)
 			local green = line[3]
 			local blue = line[4]
 			if not hasError and red and (not green or not blue) then
-				heading, body = SetSyntaxError("color value(s) missing", name, ("Line %d of the tooltip's body must either specify all 3 color components or none."):format(i))
+				heading, body = SetSyntaxError("colour value(s) missing", name, ("Line %d of the tooltip's body must either specify all 3 colour components or none."):format(i))
 				hasError = true
 			end
 			
@@ -233,7 +233,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 	
 	GameTooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
 	for i=1, #body do
-		-- if the colors were not specified, these values are nil, which tells the GameTooltip to use the default yellow
+		-- If the colours were not specified, these values are nil, which tells the GameTooltip to use the default yellow
 		local text = body[i][1]
 		local red = body[i][2]
 		local green = body[i][3]
