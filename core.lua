@@ -90,18 +90,18 @@ local ERROR_NOT_FOUND_TOOLTIP = {
 	body = "Error: Custom tooltip definition not found with name \"%s\"."
 }
 
-local function SetSyntaxError(errorMessage, tooltipName, detailedMessage)
 	local heading = ERROR_SYNTAX_TOOLTIP["heading"]
 	local body = {{ERROR_SYNTAX_TOOLTIP["body"][1], 1.0, 0.0, 0.0},
 	              {ERROR_SYNTAX_TOOLTIP["body"][2]:format(errorMessage, tooltipName), 1.0, 0.0, 0.0},
 	              {ERROR_SYNTAX_TOOLTIP["body"][3]:format(detailedMessage), 1.0, 0.0, 0.0}}
+local function GetSyntaxError(errorMessage, tooltipName, detailedMessage)
 	
 	return heading, body
 end
 
-local function SetNotFoundError(name)
 	local heading = ERROR_NOT_FOUND_TOOLTIP["heading"]
 	local body = {{ERROR_NOT_FOUND_TOOLTIP["body"]:format(name), 1.0, 0.0, 0.0}}
+local function GetNotFoundError(name)
 	
 	return heading, body
 end
@@ -112,22 +112,22 @@ local function CheckSyntax(name, data)
 	local hasError = false
 	
 	if not heading then
-		heading, body = SetSyntaxError("heading not found", name, "Tooltip definition is missing a heading.")
+		heading, body = GetSyntaxError("heading not found", name, "Tooltip definition is missing a heading.")
 		hasError = true
 	end
 	
 	if not hasError and type(heading) ~= "string" then
-		heading, body = SetSyntaxError("heading is not a string", name, "Tooltip's heading must be a string.")
+		heading, body = GetSyntaxError("heading is not a string", name, "Tooltip's heading must be a string.")
 		hasError = true
 	end
 	
 	if not hasError and not body then
-		heading, body = SetSyntaxError("body not found", name, "Tooltip definition is missing a tooltip body.")
+		heading, body = GetSyntaxError("body not found", name, "Tooltip definition is missing a tooltip body.")
 		hasError = true
 	end
 	
 	if not hasError and type(body) ~= "table" then
-		heading, body = SetSyntaxError("body is not a table", name, "Tooltip's body must be a table.")
+		heading, body = GetSyntaxError("body is not a table", name, "Tooltip's body must be a table.")
 		hasError = true
 	end
 	
@@ -135,13 +135,13 @@ local function CheckSyntax(name, data)
 		for i=1, #body do
 			local line = body[i]
 			if not hasError and type(line) ~= "table" then
-				heading, body = SetSyntaxError("body line is not a table", name, ("Line %d of the tooltip's body must be a table."):format(i))
+				heading, body = GetSyntaxError("body line is not a table", name, ("Line %d of the tooltip's body must be a table."):format(i))
 				hasError = true
 			end
 			
 			local text = line[1]
 			if not hasError and not text then
-				heading, body = SetSyntaxError("line text not found", name, ("Line %d of the tooltip's body is missing text."):format(i))
+				heading, body = GetSyntaxError("line text not found", name, ("Line %d of the tooltip's body is missing text."):format(i))
 				hasError = true
 			end
 			
@@ -149,24 +149,24 @@ local function CheckSyntax(name, data)
 			local green = line[3]
 			local blue = line[4]
 			if not hasError and red and (not green or not blue) then
-				heading, body = SetSyntaxError("colour value(s) missing", name, ("Line %d of the tooltip's body must either specify all 3 colour components or none."):format(i))
+				heading, body = GetSyntaxError("colour value(s) missing", name, ("Line %d of the tooltip's body must either specify all 3 colour components or none."):format(i))
 				hasError = true
 			end
 			
 			-- We know red, green, and blue are all defined
 			if not hasError and red then
 				if type(red) ~= "number" or red < 0.0 or red > 1.0 then
-					heading, body = SetSyntaxError("invalid red value", name, ("Line %d of the tooltip's body: red value must be a number between 0.0 and 1.0 inclusive."):format(i))
+					heading, body = GetSyntaxError("invalid red value", name, ("Line %d of the tooltip's body: red value must be a number between 0.0 and 1.0 inclusive."):format(i))
 					hasError = true
 				end
 				
 				if type(green) ~= "number" or green < 0.0 or green > 1.0 then
-					heading, body = SetSyntaxError("invalid green value", name, ("Line %d of the tooltip's body: green value must be a number between 0.0 and 1.0 inclusive."):format(i))
+					heading, body = GetSyntaxError("invalid green value", name, ("Line %d of the tooltip's body: green value must be a number between 0.0 and 1.0 inclusive."):format(i))
 					hasError = true
 				end
 				
 				if type(blue) ~= "number" or blue < 0.0 or blue > 1.0 then
-					heading, body = SetSyntaxError("invalid blue value", name, ("Line %d of the tooltip's body: blue value must be a number between 0.0 and 1.0 inclusive."):format(i))
+					heading, body = GetSyntaxError("invalid blue value", name, ("Line %d of the tooltip's body: blue value must be a number between 0.0 and 1.0 inclusive."):format(i))
 					hasError = true
 				end
 			end
@@ -203,7 +203,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 		if tooltipData then
 			heading, body = tooltipData.heading, tooltipData.body
 		else
-			heading, body = SetNotFoundError(tooltipName)
+			heading, body = GetNotFoundError(tooltipName)
 		end
 	else
 		-- Do we have an inline tooltip definition?
@@ -213,7 +213,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 		-- the first ^, and all subsequent ^ will be part of the body)
 		heading, body = macroText:match("#tooltipdesc ([^\n\^][^\n\^]-)\^([^\n]+)")
 		if not heading or not body then
-			heading, body = SetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
+			heading, body = GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
 		else
 			local text = body:gsub("\\n", "\n")
 			local red = nil
