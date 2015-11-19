@@ -90,25 +90,24 @@ local ERROR_NOT_FOUND_TOOLTIP = {
 	body = "Error: Custom tooltip definition not found with name \"%s\"."
 }
 
-	local heading = ERROR_SYNTAX_TOOLTIP["heading"]
-	local body = {{ERROR_SYNTAX_TOOLTIP["body"][1], 1.0, 0.0, 0.0},
-	              {ERROR_SYNTAX_TOOLTIP["body"][2]:format(errorMessage, tooltipName), 1.0, 0.0, 0.0},
-	              {ERROR_SYNTAX_TOOLTIP["body"][3]:format(detailedMessage), 1.0, 0.0, 0.0}}
 local function GetSyntaxError(errorMessage, tooltipName, detailedMessage)
+	local heading = ERROR_SYNTAX_TOOLTIP.heading
+	local body = {{ERROR_SYNTAX_TOOLTIP.body[1], 1.0, 0.0, 0.0},
+	              {ERROR_SYNTAX_TOOLTIP.body[2]:format(errorMessage, tooltipName), 1.0, 0.0, 0.0},
+	              {ERROR_SYNTAX_TOOLTIP.body[3]:format(detailedMessage), 1.0, 0.0, 0.0}}
 	
 	return heading, body
 end
 
-	local heading = ERROR_NOT_FOUND_TOOLTIP["heading"]
-	local body = {{ERROR_NOT_FOUND_TOOLTIP["body"]:format(name), 1.0, 0.0, 0.0}}
 local function GetNotFoundError(name)
+	local heading = ERROR_NOT_FOUND_TOOLTIP.heading
+	local body = {{ERROR_NOT_FOUND_TOOLTIP.body:format(name), 1.0, 0.0, 0.0}}
 	
 	return heading, body
 end
 
 local function CheckSyntax(name, data)
-	local heading = data["heading"]
-	local body = data["body"]
+	local heading, body = data.heading, data.body
 	local hasError = false
 	
 	if not heading then
@@ -145,9 +144,7 @@ local function CheckSyntax(name, data)
 				hasError = true
 			end
 			
-			local red = line[2]
-			local green = line[3]
-			local blue = line[4]
+			local red, green, blue = line[2], line[3], line[4]
 			if not hasError and red and (not green or not blue) then
 				heading, body = GetSyntaxError("colour value(s) missing", name, ("Line %d of the tooltip's body must either specify all 3 colour components or none."):format(i))
 				hasError = true
@@ -173,8 +170,7 @@ local function CheckSyntax(name, data)
 		end
 	end
 	
-	data["heading"] = heading
-	data["body"] = body
+	data.heading, data.body = heading, body
 	
 	return name, data
 end
@@ -216,10 +212,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 			heading, body = GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
 		else
 			local text = body:gsub("\\n", "\n")
-			local red = nil
-			local green = nil
-			local blue = nil
-			body = {{ text, red, green, blue }}
+			body = {{ text, nil, nil, nil }}
 		end
 	end
 	
@@ -234,10 +227,7 @@ function CustomTooltips_DisplayTooltip(button, macroText)
 	GameTooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
 	for i=1, #body do
 		-- If the colours were not specified, these values are nil, which tells the GameTooltip to use the default yellow
-		local text = body[i][1]
-		local red = body[i][2]
-		local green = body[i][3]
-		local blue = body[i][4]
+		local text, red, green, blue = unpack(body[i], 1, 4)
 		GameTooltip:AddLine(text, red, green, blue, true)
 	end
 	
