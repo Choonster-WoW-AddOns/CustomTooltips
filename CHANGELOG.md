@@ -1,3 +1,8 @@
+## 1.10
+- Update to 7.0
+- Fix error being thrown when mousing over an empty vanilla action button
+- Make CustomTooltips_LibActionButton disable itself if no AddOns that provide LibActionButton are installed
+
 ## 1.09
 - Tell Curse to use manual changelog
 
