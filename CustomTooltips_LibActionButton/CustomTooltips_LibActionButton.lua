@@ -1,3 +1,6 @@
+-- List globals here for Mikk's FindGlobals script
+-- GLOBALS: getmetatable, hooksecurefunc, CustomTooltips_DisplayTooltip, GetActionInfo, GetMacroBody
+
 local LibActionButton = LibStub("LibActionButton-1.0", true)
 
 if not LibActionButton then

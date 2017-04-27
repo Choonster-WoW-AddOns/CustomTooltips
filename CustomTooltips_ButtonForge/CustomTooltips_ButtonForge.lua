@@ -1,3 +1,6 @@
+-- List globals here for Mikk's FindGlobals script
+-- GLOBALS: CustomTooltips_DisplayTooltip
+
 local API = ButtonForge_API1
 
 -- We need to hook this method directly rather than using the BUTTON_ALLOCATED callback because
