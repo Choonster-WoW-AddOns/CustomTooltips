@@ -1,3 +1,6 @@
+## 1.11
+- Update to 7.2
+
 ## 1.10
 - Update to 7.0
 - Fix error being thrown when mousing over an empty vanilla action button
