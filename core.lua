@@ -75,7 +75,7 @@ local TOOLTIPS = {
 -------------------
 
 -- List globals here for Mikk's FindGlobals script
--- GLOBALS: unpack, type, assert, CustomTooltips_DisplayTooltip, GameTooltip_SetDefaultAnchor, GetActionInfo, GetMacroBody
+-- GLOBALS: unpack, type, assert, print, CustomTooltips_DisplayTooltip, GameTooltip_SetDefaultAnchor, GetActionInfo, GetMacroBody
 
 local MAX_MACROS = MAX_ACCOUNT_MACROS + MAX_CHARACTER_MACROS
 
