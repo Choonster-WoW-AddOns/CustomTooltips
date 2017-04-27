@@ -1,6 +1,6 @@
 local LibActionButton = LibStub("LibActionButton-1.0-ElvUI")
 
-local function Button_OnEnter_Hook(self)	
+local function SetTooltip_Hook(self)	
 	local type, action = self:GetAction()
 	
 	local macroIndex
@@ -21,6 +21,22 @@ local function Button_OnEnter_Hook(self)
 	end
 end
 
+-- Hook the :SetTooltip method of the button's metatable index
+local function HookMeta(button) 
+	local methods = getmetatable(button).__index
+	
+	hooksecurefunc(methods, "SetTooltip", SetTooltip_Hook)
+end
+
 LibActionButton.RegisterCallback("CustomTooltips_ElvUI", "OnButtonCreated", function(_, button)
-	button:HookScript("OnEnter", Button_OnEnter_Hook)
+	-- Only hook the :SetTooltip methods once
+	LibActionButton.UnregisterCallback("CustomTooltips_ElvUI", "OnButtonCreated")
+
+	button:SetState(0, "action", 1) -- Set the button's kind to "action" and its metatable to Action
+	HookMeta(button) -- Hook the Action metatable
+	
+	button:SetState(0, "macro", 1) -- Set the button's kind to "macro" and its metatable to Macro
+	HookMeta(button) -- Hook the Macro metatable
+	
+	button:ClearStates() -- Clear the button's states
 end)

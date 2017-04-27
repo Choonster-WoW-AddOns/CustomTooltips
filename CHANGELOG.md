@@ -1,5 +1,6 @@
 ## 1.11
 - Update to 7.2
+- Fix LibActionButton/ElvUI custom tooltips being overwritten by default ones
 
 ## 1.10
 - Update to 7.0
