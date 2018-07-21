@@ -1,7 +1,10 @@
-## Interface: 70200
+## Interface: 80000
 ## Title: Custom Tooltips
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros.
 ## Version: @project-version@
+
+## X-Curse-Project-ID: 85995
+## X-WoWI-ID: 23213
 
 core.lua
