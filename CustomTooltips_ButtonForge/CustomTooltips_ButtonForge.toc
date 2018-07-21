@@ -1,4 +1,4 @@
-## Interface: 70200
+## Interface: 80000
 ## Title: Custom Tooltips: ButtonForge
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros on ButtonForge action buttons.
