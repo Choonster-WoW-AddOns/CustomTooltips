@@ -1,0 +1,8 @@
+## Interface: 80000
+## Title: Custom Tooltips: Blizzard
+## Author: Choonster
+## Notes: Displays custom tooltips for macros on the default UI's action buttons.
+## Version: @project-version@
+## Dependencies: CustomTooltips
+
+CustomTooltips_Blizzard.lua
