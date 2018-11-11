@@ -6,9 +6,11 @@ tools-used:
     - findglobals
 
 move-folders:
+    CustomTooltips/CustomTooltips_Blizzard: CustomTooltips_Blizzard
     CustomTooltips/CustomTooltips_LibActionButton: CustomTooltips_LibActionButton
     CustomTooltips/CustomTooltips_ElvUI: CustomTooltips_ElvUI
     CustomTooltips/CustomTooltips_ButtonForge: CustomTooltips_ButtonForge
+    CustomTooltips/CustomTooltips_Opie: CustomTooltips_Opie
 
 manual-changelog:
     filename: CHANGELOG.md
