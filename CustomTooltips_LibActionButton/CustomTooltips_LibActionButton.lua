@@ -1,5 +1,5 @@
 -- List globals here for Mikk's FindGlobals script
--- GLOBALS: getmetatable, hooksecurefunc, CustomTooltips_DisplayTooltip, GetActionInfo, GetMacroBody
+-- GLOBALS: getmetatable, hooksecurefunc, CustomTooltips, GetActionInfo, GetMacroBody
 
 local LibActionButton = LibStub("LibActionButton-1.0", true)
 
@@ -27,7 +27,7 @@ local function SetTooltip_Hook(self)
 	
 	local macroText = GetMacroBody(macroIndex)
 	if macroText then
-		CustomTooltips_DisplayTooltip(self, macroText)
+		CustomTooltips.DisplayTooltipForMacroText(self, macroText)
 	end
 end
 

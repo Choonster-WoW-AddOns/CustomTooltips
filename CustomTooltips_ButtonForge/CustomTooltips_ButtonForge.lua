@@ -1,5 +1,5 @@
 -- List globals here for Mikk's FindGlobals script
--- GLOBALS: CustomTooltips_DisplayTooltip
+-- GLOBALS: CustomTooltips
 
 local API = ButtonForge_API1
 
@@ -8,5 +8,5 @@ local API = ButtonForge_API1
 -- This means that simply setting an OnEnter hook won't work, as the custom tooltip will be replaced almost instantly.
 hooksecurefunc(BFButton, "UpdateTooltipMacro", function(self)
 	self = self.ParentButton or self
-	CustomTooltips_DisplayTooltip(self.Widget, self.MacroBody)
+	CustomTooltips.DisplayTooltipForMacroText(self.Widget, self.MacroBody)
 end)

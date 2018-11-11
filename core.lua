@@ -201,50 +201,88 @@ end
 
 oldTooltips = nil -- Allow the old table to be garbage collected.
 
-local GameTooltip = GameTooltip
+---------------
+----- API -----
+---------------
+CustomTooltips = {}
 
--- Display a custom tooltip anchored to the supplied button based on the supplied macro text
-function CustomTooltips_DisplayTooltip(button, macroText)
+--- Gets the heading and body of a tooltip defined in the TOOLTIPS table.
+-- @param name The name of the tooltip
+-- @return true if the tooltip was found; false otherwise
+-- @return The heading of the tooltip
+-- @return The body of the tooltip (a table of line definitions)
+function CustomTooltips.GetNamedTooltip(name)
+	local tooltipData = TOOLTIPS[name:upper()]
+	if tooltipData then
+		return true, tooltipData.heading, tooltipData.body
+	else
+		return false, GetNotFoundError(name)
+	end
+end
+
+--- Gets the heading and body of a tooltip defined inline.
+-- @param definition The text following the #tooltipdesc metacommand
+-- @return true if a valid tooltip was found; false otherwise
+-- @return The heading of the tooltip
+-- @return The body of the tooltip (a table of line definitions)
+function CustomTooltips.GetInlineTooltip(definition)
+	-- Find the heading and body from the inline tooltip definition (use a non-greedy approach to the separator - heading ends at
+	-- the first ^, and all subsequent ^ will be part of the body)
+	local heading, body = definition:match("([^\n\^][^\n\^]-)\^([^\n]+)")
+	if heading and body then
+		local text = body:gsub("\\n", "\n")
+		body = {{ text, nil, nil, nil }}
+		return true, heading, body
+	else
+		return false, GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
+	end
+end
+
+--- Populates a GameTooltip with the specified tooltip text.
+-- @param tooltipFrame The GameTooltip to populate
+-- @param heading The heading of the tooltip
+-- @param body The body of the tooltip (a table of line definitions)
+function CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
+	tooltipFrame:ClearLines()
+
+	tooltipFrame:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
+	
+	for i=1, #body do
+		-- If the colours were not specified, these values are nil, which tells the GameTooltip to use the default yellow
+		local text, red, green, blue = unpack(body[i], 1, 4)
+		tooltipFrame:AddLine(text, red, green, blue, true)
+	end
+	
+	tooltipFrame:Show()
+end
+
+--- Displays a custom tooltip anchored to the specified button based on the specified macro text.
+-- @param button The button to anchor the tooltip to
+-- @param macroText The macro text
+function CustomTooltips.DisplayTooltipForMacroText(button, macroText)
+	local _, heading, body
+	
+	-- Try to find a tooltip name
 	local tooltipName = macroText:match("#customtooltip ([^\n]+)")
-	local heading, body
+	
 	if tooltipName then
-		local tooltipData = TOOLTIPS[tooltipName:upper()]
-		if tooltipData then
-			heading, body = tooltipData.heading, tooltipData.body
-		else
-			heading, body = GetNotFoundError(tooltipName)
-		end
+		_, heading, body = CustomTooltips.GetNamedTooltip(tooltipName)
 	else
 		-- Do we have an inline tooltip definition?
 		if not macroText:find("#tooltipdesc") then return end
 		
-		-- We do have an inline tooltip definition (use a non-greedy approach to the separator - heading ends at
-		-- the first ^, and all subsequent ^ will be part of the body)
-		heading, body = macroText:match("#tooltipdesc ([^\n\^][^\n\^]-)\^([^\n]+)")
-		if not heading or not body then
-			heading, body = GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
-		else
-			local text = body:gsub("\\n", "\n")
-			body = {{ text, nil, nil, nil }}
-		end
+		local definition = macroText:match("#tooltipdesc ([^\n]+)")
+		
+		_, heading, body = CustomTooltips.GetInlineTooltip(definition)
 	end
 	
 	assert(heading, "Heading is nil.")
 	assert(body, "Body is nil.")
 	
-	GameTooltip:ClearLines()
-	
-	-- Anchors the tooltip to the action button and positions it
+	-- Anchor the tooltip to the action button and position it
 	GameTooltip_SetDefaultAnchor(GameTooltip, button)
 	
-	GameTooltip:AddLine(heading, 1,1,1) -- Use white text, don't wrap the text
-	for i=1, #body do
-		-- If the colours were not specified, these values are nil, which tells the GameTooltip to use the default yellow
-		local text, red, green, blue = unpack(body[i], 1, 4)
-		GameTooltip:AddLine(text, red, green, blue, true)
-	end
-	
-	GameTooltip:Show()
+	CustomTooltips.SetTooltipText(GameTooltip, heading, body)
 end
 
 hooksecurefunc("ActionButton_SetTooltip", function(self)
@@ -257,5 +295,5 @@ hooksecurefunc("ActionButton_SetTooltip", function(self)
 		return
 	end
 	
-	CustomTooltips_DisplayTooltip(self, macroText)	
+	CustomTooltips.DisplayTooltipForMacroText(self, macroText)	
 end)
