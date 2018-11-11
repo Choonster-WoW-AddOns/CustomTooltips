@@ -1,0 +1,8 @@
+## Interface: 80000
+## Title: Custom Tooltips: Opie
+## Author: Choonster
+## Notes: Displays custom tooltips for macros on Opie ring slices.
+## Version: @project-version@
+## Dependencies: CustomTooltips, Opie
+
+CustomTooltips_Opie.lua
