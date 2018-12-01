@@ -221,7 +221,7 @@ function CustomTooltips.GetInlineTooltip(definition)
 		body = {{ text, nil, nil, nil }}
 		return true, heading, body
 	else
-		return false, GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #customtooltip heading^body")
+		return false, GetSyntaxError("Bad inline tooltip definition format", "<inline>", "Macro inline tooltip must follow this format: #tooltipdesc heading^body")
 	end
 end
 
