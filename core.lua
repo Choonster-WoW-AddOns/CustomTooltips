@@ -215,7 +215,7 @@ end
 function CustomTooltips.GetInlineTooltip(definition)
 	-- Find the heading and body from the inline tooltip definition (use a non-greedy approach to the separator - heading ends at
 	-- the first ^, and all subsequent ^ will be part of the body)
-	local heading, body = definition:match("([^\n\^][^\n\^]-)\^([^\n]+)")
+	local heading, body = definition:match("([^\n\\^][^\n\\^]-)\^([^\n]+)")
 	if heading and body then
 		local text = body:gsub("\\n", "\n")
 		body = {{ text, nil, nil, nil }}
