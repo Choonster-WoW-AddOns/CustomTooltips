@@ -1,3 +1,9 @@
+# 1.13.1
+- Add missing changelog for 1.13
+
+# 1.13
+- Add Opie module
+
 # 1.12
 - Bump TOC Interface version to 8.0
 - Add .travis.yml file and TOC properties for the BigWigs packager script
