@@ -2,6 +2,13 @@ package-as: CustomTooltips
 
 enable-nolib-creation: no
 
+optional-dependencies:
+    - button-forge
+    - libactionbutton-1-0
+    - bartender4
+    - opie
+    - lui
+
 tools-used:
     - findglobals
 
