@@ -1,3 +1,6 @@
+# 1.13.2
+- Add optional dependencies to .pkgmeta for CurseForge
+
 # 1.13.1
 - Add missing changelog for 1.13
 
