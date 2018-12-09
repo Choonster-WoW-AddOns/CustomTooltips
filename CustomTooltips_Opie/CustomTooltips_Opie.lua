@@ -10,20 +10,22 @@ if not RW then
 	return
 end
 
-local function SetTooltipText(tooltipFrame, args)
-	local heading, body = args[1], args[2]
+local function SetTooltipTextNamed(tooltipFrame, tooltipName)
+	local _, heading, body = CustomTooltips.GetNamedTooltip(tooltipName)
 	
 	CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
 end
 
 RW:SetMetaHintFilter("customtooltip", "replaceTooltip", false, function(meta, tooltipName, target)
-	local _, heading, body = CustomTooltips.GetNamedTooltip(tooltipName)
-	
-	return true, SetTooltipText, {heading, body}
+	return true, SetTooltipTextNamed, tooltipName
 end)
 
-RW:SetMetaHintFilter("tooltipdesc", "replaceTooltip", false, function(meta, definition, target)
+local function SetTooltipTextInline(tooltipFrame, definition)
 	local _, heading, body = CustomTooltips.GetInlineTooltip(definition)
-		
-	return true, SetTooltipText, {heading, body}
+	
+	CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
+end
+
+RW:SetMetaHintFilter("tooltipdesc", "replaceTooltip", false, function(meta, definition, target)
+	return true, SetTooltipTextInline, definition
 end)
