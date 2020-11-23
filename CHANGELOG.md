@@ -1,3 +1,7 @@
+# 1.14
+- Update Blizzard module to 9.0.2
+- Bump TOC Interface version to 9.0.2
+
 # 1.13.2
 - Add optional dependencies to .pkgmeta for CurseForge
 
