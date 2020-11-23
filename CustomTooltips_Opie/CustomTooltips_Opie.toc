@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 90002
 ## Title: Custom Tooltips: Opie
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros on Opie ring slices.
