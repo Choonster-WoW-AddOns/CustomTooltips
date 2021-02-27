@@ -1,6 +1,3 @@
--- List globals here for Mikk's FindGlobals script
--- GLOBALS: print, CustomTooltips, GetActionInfo, GetMacroBody, EnumerateFrames, ActionBarActionButtonMixin
-
 local MAX_MACROS = MAX_ACCOUNT_MACROS + MAX_CHARACTER_MACROS
 
 --@alpha@

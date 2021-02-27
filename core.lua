@@ -74,9 +74,6 @@ local TOOLTIPS = {
 -- END OF CONFIG --
 -------------------
 
--- List globals here for Mikk's FindGlobals script
--- GLOBALS: unpack, type, assert, CustomTooltips, GameTooltip, GameTooltip_SetDefaultAnchor
-
 -- Do not change this
 local ERROR_SYNTAX_TOOLTIP = {
 	heading = "Tooltip Syntax Error",

@@ -1,6 +1,3 @@
--- List globals here for Mikk's FindGlobals script
--- GLOBALS: getmetatable, hooksecurefunc, CustomTooltips, GetActionInfo, GetMacroBody
-
 local LibActionButton = LibStub("LibActionButton-1.0-ElvUI")
 
 local function SetTooltip_Hook(self)
