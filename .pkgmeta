@@ -8,6 +8,7 @@ optional-dependencies:
     - bartender4
     - opie
     - lui
+    - mega-macro
 
 tools-used:
     - findglobals
