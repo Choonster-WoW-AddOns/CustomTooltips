@@ -1,3 +1,7 @@
+# 1.15
+- Add Mega Macro module
+- Fix invalid escape sequence in inline tooltip string pattern
+
 # 1.14
 - Update Blizzard module to 9.0.2
 - Bump TOC Interface version to 9.0.2
