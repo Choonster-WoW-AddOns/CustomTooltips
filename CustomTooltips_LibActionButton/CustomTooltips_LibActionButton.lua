@@ -10,9 +10,9 @@ if not LibActionButton then
 	return
 end
 
-local function SetTooltip_Hook(self)	
+local function SetTooltip_Hook(self)
 	local type, action = self:GetAction()
-	
+
 	local macroIndex
 	if type == "action" then
 		local actionType, id, subType = GetActionInfo(action)
@@ -22,9 +22,9 @@ local function SetTooltip_Hook(self)
 	elseif type == "macro" then
 		macroIndex = action
 	end
-	
+
 	if not macroIndex then return end
-	
+
 	local macroText = GetMacroBody(macroIndex)
 	if macroText then
 		CustomTooltips.DisplayTooltipForMacroText(self, macroText)
@@ -32,9 +32,9 @@ local function SetTooltip_Hook(self)
 end
 
 -- Hook the :SetTooltip method of the button's metatable index
-local function HookMeta(button) 
+local function HookMeta(button)
 	local methods = getmetatable(button).__index
-	
+
 	hooksecurefunc(methods, "SetTooltip", SetTooltip_Hook)
 end
 
@@ -44,9 +44,9 @@ LibActionButton.RegisterCallback("CustomTooltips_LibActionButton", "OnButtonCrea
 
 	button:SetState(0, "action", 1) -- Set the button's kind to "action" and its metatable to Action
 	HookMeta(button) -- Hook the Action metatable
-	
+
 	button:SetState(0, "macro", 1) -- Set the button's kind to "macro" and its metatable to Macro
 	HookMeta(button) -- Hook the Macro metatable
-	
+
 	button:ClearStates() -- Clear the button's states
 end)

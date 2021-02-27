@@ -12,7 +12,7 @@ end
 
 local function SetTooltipTextNamed(tooltipFrame, tooltipName)
 	local _, heading, body = CustomTooltips.GetNamedTooltip(tooltipName)
-	
+
 	CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
 end
 
@@ -22,7 +22,7 @@ end)
 
 local function SetTooltipTextInline(tooltipFrame, definition)
 	local _, heading, body = CustomTooltips.GetInlineTooltip(definition)
-	
+
 	CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
 end
 

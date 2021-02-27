@@ -19,14 +19,14 @@ local SetTooltip_Old = ActionBarActionButtonMixin.SetTooltip
 local function SetTooltip_Hook(self)
 	local actionType, id, subType = GetActionInfo(self.action)
 	if actionType ~= "macro" or id < 1 or id > MAX_MACROS then return end
-	
+
 	local macroText = GetMacroBody(id)
 	if not macroText then
 		debugprint("CustomTooltips: Macro is empty", "ID", id, "Button", self:GetName())
 		return
 	end
-	
-	CustomTooltips.DisplayTooltipForMacroText(self, macroText)	
+
+	CustomTooltips.DisplayTooltipForMacroText(self, macroText)
 end
 
 -- Hook the mixin function to handle action buttons created dynamically
@@ -37,7 +37,7 @@ local frame = EnumerateFrames()
 while frame do
 	if frame.SetTooltip == SetTooltip_Old then
 		hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
-		
+
 		debugprint(frame:GetName() or frame, "hooked!")
 	end
 
