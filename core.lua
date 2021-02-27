@@ -241,7 +241,7 @@ function CustomTooltips.SetTooltipText(tooltipFrame, heading, body)
 end
 
 --- Displays a custom tooltip anchored to the specified button based on the specified macro text.
--- @param button The button to anchor the tooltip to
+-- @param button The button to anchor the tooltip to, or nil if the tooltip shouldn't be anchored to a button
 -- @param macroText The macro text
 function CustomTooltips.DisplayTooltipForMacroText(button, macroText)
 	local _, heading, body
@@ -262,9 +262,11 @@ function CustomTooltips.DisplayTooltipForMacroText(button, macroText)
 
 	assert(heading, "Heading is nil.")
 	assert(body, "Body is nil.")
-	
-	-- Anchor the tooltip to the action button and position it
-	GameTooltip_SetDefaultAnchor(GameTooltip, button)
+
+	if button then
+		-- Anchor the tooltip to the action button and position it
+		GameTooltip_SetDefaultAnchor(GameTooltip, button)
+	end
 
 	CustomTooltips.SetTooltipText(GameTooltip, heading, body)
 end

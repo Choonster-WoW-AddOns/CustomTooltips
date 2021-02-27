@@ -18,6 +18,7 @@ move-folders:
     CustomTooltips/CustomTooltips_ElvUI: CustomTooltips_ElvUI
     CustomTooltips/CustomTooltips_ButtonForge: CustomTooltips_ButtonForge
     CustomTooltips/CustomTooltips_Opie: CustomTooltips_Opie
+    CustomTooltips/CustomTooltips_MegaMacro: CustomTooltips_MegaMacro
 
 manual-changelog:
     filename: CHANGELOG.md

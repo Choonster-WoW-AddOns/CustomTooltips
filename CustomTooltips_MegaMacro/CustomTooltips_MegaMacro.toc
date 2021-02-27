@@ -1,0 +1,8 @@
+## Interface: 90002
+## Title: Custom Tooltips: Mega Macro
+## Author: Choonster
+## Notes: Displays custom tooltips for macros created in Mega Macro.
+## Version: @project-version@
+## Dependencies: CustomTooltips, MegaMacro
+
+CustomTooltips_MegaMacro.lua
