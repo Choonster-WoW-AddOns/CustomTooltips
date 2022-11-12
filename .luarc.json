@@ -1,0 +1,20 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "runtime.version": "Lua 5.1",
+    "diagnostics.globals": [
+        "GameTooltip_SetDefaultAnchor",
+        "GameTooltip",
+        "MAX_ACCOUNT_MACROS",
+        "MAX_CHARACTER_MACROS",
+        "ActionBarActionButtonMixin",
+        "BFButton",
+        "LibStub",
+        "MegaMacro",
+        "OPie"
+    ],
+    "workspace.ignoreDir": [
+        ".vscode",
+        "Interface (BlizzardInterfaceCode)"
+    ],
+    "telemetry.enable": false
+}
