@@ -1,4 +1,7 @@
-## Interface: 90002
+## Interface: 100000
+## Interface-Classic: 11403
+## Interface-BCC: 20504
+## Interface-Wrath: 30400
 ## Title: Custom Tooltips
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros.
