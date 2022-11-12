@@ -1,3 +1,7 @@
+# 1.16
+- Update Opie module for Yuzu (10.0) changes
+- Bump TOC Interface version to 10.0.0
+
 # 1.15
 - Add Mega Macro module
 - Fix invalid escape sequence in inline tooltip string pattern
