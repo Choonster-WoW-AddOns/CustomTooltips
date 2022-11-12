@@ -1,7 +1,4 @@
--- List globals here for Mikk's FindGlobals script
--- GLOBALS: print, DisableAddOn, CustomTooltips, OneRingLib
-
-local RW = OneRingLib.ext.ActionBook:compatible("Rewire", 1, 12)
+local RW = OPie.ActionBook:compatible("Rewire", 1, 22)
 
 if not RW then
 	local addon, ns = ...
