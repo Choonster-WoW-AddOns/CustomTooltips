@@ -1,3 +1,8 @@
+# 1.17.0
+- Bump TOC Interface versions to 10.1.0
+- Bump Wrath Classic TOC Interface version to 3.4.1
+- Update Blizzard module for 10.1.0
+
 # 1.16.1
 - Bump TOC Interface versions to 10.0.2
 
