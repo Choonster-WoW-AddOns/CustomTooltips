@@ -11,7 +11,8 @@ end
 local function debugprint() end
 --@end-non-alpha@]===]
 
-local SetTooltip_Old = ActionBarActionButtonMixin.SetTooltip
+local ActionBarActionButtonMixin_SetTooltip_Old = ActionBarActionButtonMixin.SetTooltip
+local ActionBarActionButtonDerivedMixin_SetTooltip_Old = ActionBarActionButtonDerivedMixin.SetTooltip
 
 local function SetTooltip_Hook(self)
 	local actionType, id, subType = GetActionInfo(self.action)
@@ -28,11 +29,16 @@ end
 
 -- Hook the mixin function to handle action buttons created dynamically
 hooksecurefunc(ActionBarActionButtonMixin, "SetTooltip", SetTooltip_Hook)
+hooksecurefunc(ActionBarActionButtonDerivedMixin, "SetTooltip", SetTooltip_Hook)
 
 -- Iterate through all existing frames to handle action buttons created statically
 local frame = EnumerateFrames()
 while frame do
-	if frame.SetTooltip == SetTooltip_Old then
+	if frame.SetTooltip == ActionBarActionButtonMixin_SetTooltip_Old then
+		hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
+
+		debugprint(frame:GetName() or frame, "hooked!")
+	elseif frame.SetTooltip == ActionBarActionButtonDerivedMixin_SetTooltip_Old then
 		hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
 
 		debugprint(frame:GetName() or frame, "hooked!")

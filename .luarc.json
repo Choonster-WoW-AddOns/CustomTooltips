@@ -10,7 +10,8 @@
         "BFButton",
         "LibStub",
         "MegaMacro",
-        "OPie"
+        "OPie",
+        "ActionBarActionButtonDerivedMixin"
     ],
     "workspace.ignoreDir": [
         ".vscode",
