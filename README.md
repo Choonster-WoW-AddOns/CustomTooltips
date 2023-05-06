@@ -9,4 +9,4 @@ You can also define your tooltips in the macro itself using _#tooltipdesc Headin
 
 Download
 ========
-You can download the AddOn from [Curse](http://www.curse.com/addons/wow/custom-tooltips) or [WoWInterface](http://www.wowinterface.com/downloads/info23213-CustomTooltips.html).
+You can download the AddOn from [CurseForge](https://www.curseforge.com/wow/addons/custom-tooltips) or [WoWInterface](https://www.wowinterface.com/downloads/info23213-CustomTooltips.html).
