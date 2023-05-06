@@ -1,7 +1,7 @@
-## Interface: 100002
+## Interface: 100100
 ## Interface-Classic: 11403
 ## Interface-BCC: 20504
-## Interface-Wrath: 30400
+## Interface-Wrath: 30401
 ## Title: Custom Tooltips: LibActionButton
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros on LibActionButton action buttons. LAB is used by Bartender4 and various other action bar AddOns.
