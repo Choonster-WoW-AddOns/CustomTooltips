@@ -3,19 +3,26 @@ local LibActionButton = LibStub("LibActionButton-1.0-ElvUI")
 local function SetTooltip_Hook(self)
 	local type, action = self:GetAction()
 
-	local macroIndex
+	local macroText
 	if type == "action" then
 		local actionType, id, subType = GetActionInfo(action)
-		if actionType == "macro" then
-			macroIndex = id
+
+		if actionType ~= "macro" then return end
+
+		-- First try using the ID as a macro index
+		macroText = GetMacroBody(id)
+
+		-- If that doesn't work (5.2.0), try getting the macro by its name
+		-- https://github.com/Stanzilla/WoWUIBugs/issues/495
+		if not macroText then
+			local macroName = GetActionText(self.action)
+
+			macroText = GetMacroBody(macroName)
 		end
 	elseif type == "macro" then
-		macroIndex = action
+		macroText = GetMacroBody(action)
 	end
 
-	if not macroIndex then return end
-
-	local macroText = GetMacroBody(macroIndex)
 	if macroText then
 		CustomTooltips.DisplayTooltipForMacroText(self, macroText)
 	end
