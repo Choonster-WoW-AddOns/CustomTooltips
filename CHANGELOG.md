@@ -1,3 +1,10 @@
+# 1.18.0
+- Add workaround for GetActionInfo not returning macro index
+  - https://github.com/Stanzilla/WoWUIBugs/issues/495
+- Bump TOC Interface versions to 10.2.0
+- Bump Classic TOC Interface versions to 1.14.4
+- Bump Wrath Classic TOC Interface version to 3.4.2
+
 # 1.17.0
 - Bump TOC Interface versions to 10.1.0
 - Bump Wrath Classic TOC Interface version to 3.4.1
