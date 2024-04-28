@@ -1,7 +1,7 @@
-## Interface: 100200
-## Interface-Classic: 11404
+## Interface: 100207
+## Interface-Classic: 11502
 ## Interface-BCC: 20504
-## Interface-Wrath: 30402
+## Interface-Wrath: 30403
 ## Title: Custom Tooltips: ButtonForge
 ## Author: Choonster
 ## Notes: Displays custom tooltips for macros on ButtonForge action buttons.
