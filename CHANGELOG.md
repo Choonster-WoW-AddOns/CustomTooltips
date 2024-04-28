@@ -1,3 +1,6 @@
+# 1.20.0
+- Add ConsolePort module
+
 # 1.19.2
 - Enable TOC creation for Classic clients
 
