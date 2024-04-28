@@ -1,3 +1,6 @@
+# 1.19.2
+- Enable TOC creation for Classic clients
+
 # 1.19.1
 - Downgrade TOC Interface versions to 10.2.6
   - 10.2.7 hasn't been released yet
