@@ -1,3 +1,11 @@
+# 1.19.0
+- Change GetActionInfo workaround to only use macro name
+  - https://github.com/Stanzilla/WoWUIBugs/issues/495
+  - https://github.com/Choonster-WoW-AddOns/CustomTooltips/issues/6
+- Bump TOC Interface versions to 10.2.7
+- Bump Classic TOC Interface versions to 1.15.2
+- Bump Wrath Classic TOC Interface versions to 3.4.3
+
 # 1.18.0
 - Add workaround for GetActionInfo not returning macro index
   - https://github.com/Stanzilla/WoWUIBugs/issues/495
