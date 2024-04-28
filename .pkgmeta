@@ -20,6 +20,7 @@ move-folders:
     CustomTooltips/CustomTooltips_ButtonForge: CustomTooltips_ButtonForge
     CustomTooltips/CustomTooltips_Opie: CustomTooltips_Opie
     CustomTooltips/CustomTooltips_MegaMacro: CustomTooltips_MegaMacro
+    CustomTooltips/CustomTooltips_ConsolePort: CustomTooltips_ConsolePort
 
 manual-changelog:
     filename: CHANGELOG.md
