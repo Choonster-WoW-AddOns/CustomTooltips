@@ -1,3 +1,7 @@
+# 1.19.1
+- Downgrade TOC Interface versions to 10.2.6
+  - 10.2.7 hasn't been released yet
+
 # 1.19.0
 - Change GetActionInfo workaround to only use macro name
   - https://github.com/Stanzilla/WoWUIBugs/issues/495
