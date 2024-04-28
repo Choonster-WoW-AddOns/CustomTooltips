@@ -27,3 +27,5 @@ manual-changelog:
 
 ignore:
     - publish.ps1
+
+enable-toc-creation: yes
