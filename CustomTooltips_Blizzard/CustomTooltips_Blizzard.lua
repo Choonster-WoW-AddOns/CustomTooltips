@@ -18,17 +18,17 @@ local function SetTooltip_Hook(self)
 	local actionType, id, subType = GetActionInfo(self.action)
 
 	if actionType ~= "macro" then return end
-	
-	-- First try using the ID as a macro index
-	local macroText = GetMacroBody(id)
 
-	-- If that doesn't work (5.2.0), try getting the macro by its name
+	-- GetActionInfo returns invalid ID values for macros in 10.2.0+, try getting the macro by its name
 	-- https://github.com/Stanzilla/WoWUIBugs/issues/495
-	if not macroText then
-		local macroName = GetActionText(self.action)
+	local macroName = GetActionText(self.action)
 
-		macroText = GetMacroBody(macroName)
+	if not macroName or macroName == "" then
+		debugprint("CustomTooltips: Macro name is nil/empty", "ID", id, "Name", macroName, "Button", self:GetName())
+		return
 	end
+
+	local macroText = GetMacroBody(macroName)
 
 	if not macroText then
 		debugprint("CustomTooltips: Macro is empty", "ID", id, "Button", self:GetName())
