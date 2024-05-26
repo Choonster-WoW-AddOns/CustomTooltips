@@ -1,3 +1,7 @@
+# 1.21.0
+- Fix Classic Season of Discovery support
+- Bump TOC Interface versions to 10.2.7
+
 # 1.20.0
 - Add ConsolePort module
 
