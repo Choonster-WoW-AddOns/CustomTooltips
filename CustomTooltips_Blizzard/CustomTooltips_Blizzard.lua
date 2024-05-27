@@ -1,5 +1,3 @@
-local MAX_MACROS = MAX_ACCOUNT_MACROS + MAX_CHARACTER_MACROS
-
 --@alpha@
 local function debugprint(name, ...)
 	-- if not name:find("BonusLoot", 1, true) then return end
@@ -10,9 +8,6 @@ end
 --[===[@non-alpha@
 local function debugprint() end
 --@end-non-alpha@]===]
-
-local ActionBarActionButtonMixin_SetTooltip_Old = ActionBarActionButtonMixin.SetTooltip
-local ActionBarActionButtonDerivedMixin_SetTooltip_Old = ActionBarActionButtonDerivedMixin and ActionBarActionButtonDerivedMixin.SetTooltip or nil
 
 local function SetTooltip_Hook(self)
 	local actionType, id, subType = GetActionInfo(self.action)
@@ -38,25 +33,29 @@ local function SetTooltip_Hook(self)
 	CustomTooltips.DisplayTooltipForMacroText(self, macroText)
 end
 
--- Hook the mixin function to handle action buttons created dynamically
-hooksecurefunc(ActionBarActionButtonMixin, "SetTooltip", SetTooltip_Hook)
+if ActionBarActionButtonMixin and ActionBarActionButtonMixin.SetTooltip then -- We're on Retail (10.1.0 or later), hook the mixins
+	local ActionBarActionButtonMixin_SetTooltip_Old = ActionBarActionButtonMixin.SetTooltip
+	local ActionBarActionButtonDerivedMixin_SetTooltip_Old = ActionBarActionButtonDerivedMixin.SetTooltip
 
-if ActionBarActionButtonDerivedMixin then
-	hooksecurefunc(ActionBarActionButtonDerivedMixin, "SetTooltip", SetTooltip_Hook)	
-end
+	-- Hook the mixin functions to handle action buttons created dynamically
+	hooksecurefunc(ActionBarActionButtonMixin, "SetTooltip", SetTooltip_Hook)
+	hooksecurefunc(ActionBarActionButtonDerivedMixin, "SetTooltip", SetTooltip_Hook)
 
--- Iterate through all existing frames to handle action buttons created statically
-local frame = EnumerateFrames()
-while frame do
-	if frame.SetTooltip == ActionBarActionButtonMixin_SetTooltip_Old then
-		hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
+	-- Iterate through all existing frames to handle action buttons created statically
+	local frame = EnumerateFrames()
+	while frame do
+		if frame.SetTooltip == ActionBarActionButtonMixin_SetTooltip_Old then
+			hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
 
-		debugprint(frame:GetName() or frame, "hooked!")
-	elseif ActionBarActionButtonDerivedMixin_SetTooltip_Old and frame.SetTooltip == ActionBarActionButtonDerivedMixin_SetTooltip_Old then
-		hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
+			debugprint(frame:GetName() or frame, "hooked!")
+		elseif frame.SetTooltip == ActionBarActionButtonDerivedMixin_SetTooltip_Old then
+			hooksecurefunc(frame, "SetTooltip", SetTooltip_Hook)
 
-		debugprint(frame:GetName() or frame, "hooked!")
+			debugprint(frame:GetName() or frame, "hooked!")
+		end
+
+		frame = EnumerateFrames(frame)
 	end
-
-	frame = EnumerateFrames(frame)
+else -- We're on Classic (Vanilla, TBC, Wrath or Cata), hook the global function
+	hooksecurefunc("ActionButton_SetTooltip", SetTooltip_Hook)
 end
