@@ -1,3 +1,6 @@
+# 1.21.1
+- Fix Classic support
+
 # 1.21.0
 - Fix Classic Season of Discovery support
 - Bump TOC Interface versions to 10.2.7
