@@ -1,3 +1,7 @@
+# 1.22
+- Bump TOC Interface versions to 11.0.0
+- Fix LibActionButton and ElvUI modules
+
 # 1.21.1
 - Fix Classic support
 
