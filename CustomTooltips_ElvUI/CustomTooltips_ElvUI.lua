@@ -11,7 +11,7 @@ local function SetTooltip_Hook(self)
 
 		-- GetActionInfo returns invalid ID values for macros in 10.2.0+, try getting the macro by its name
 		-- https://github.com/Stanzilla/WoWUIBugs/issues/495
-		local macroName = GetActionText(self.action)
+		local macroName = GetActionText(action)
 
 		if not macroName or macroName == "" then
 			return
