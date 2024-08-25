@@ -1,3 +1,7 @@
+# 1.23
+- Bump TOC Interface versions to 11.0.2
+- Add #ct and #td aliases of #customtooltip and #tooltipdesc
+
 # 1.22
 - Bump TOC Interface versions to 11.0.0
 - Fix LibActionButton and ElvUI modules
