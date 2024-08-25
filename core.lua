@@ -326,15 +326,15 @@ function CustomTooltips.DisplayTooltipForMacroText(button, macroText)
 	local _, heading, body
 
 	-- Try to find a tooltip name
-	local tooltipName = macroText:match("#customtooltip ([^\n]+)")
+	local tooltipName = macroText:match("#customtooltip ([^\n]+)") or macroText:match("#ct ([^\n]+)")
 
 	if tooltipName then
 		_, heading, body = CustomTooltips.GetNamedTooltip(tooltipName)
 	else
 		-- Do we have an inline tooltip definition?
-		if not macroText:find("#tooltipdesc") then return end
+		if not macroText:find("#tooltipdesc") and not macroText:find("#td") then return end
 
-		local definition = macroText:match("#tooltipdesc ([^\n]+)")
+		local definition = macroText:match("#tooltipdesc ([^\n]+)") or macroText:match("#td ([^\n]+)")
 
 		_, heading, body = CustomTooltips.GetInlineTooltip(definition)
 	end
