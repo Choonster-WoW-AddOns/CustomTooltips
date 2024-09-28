@@ -2,9 +2,11 @@ local LibActionButton = LibStub("LibActionButton-1.0", true)
 
 if not LibActionButton then
 	local addon, ns = ...
-	DisableAddOn(addon)
+
+	C_AddOns.DisableAddOn(addon)
+
 	print(addon ..
-	" has been automatically disabled because you don't have any AddOns that provide LibActionButton installed. You can manually re-enable it when you install one.")
+		" has been automatically disabled because you don't have any AddOns that provide LibActionButton installed. You can manually re-enable it when you install one.")
 	return
 end
 
