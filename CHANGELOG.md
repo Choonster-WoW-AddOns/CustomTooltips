@@ -1,3 +1,7 @@
+# 1.23.1
+- Update DisableAddOn call to use C_AddOns namespace
+- Add Cataclysm Classic TOC Interface version
+
 # 1.23
 - Bump TOC Interface versions to 11.0.2
 - Add #ct and #td aliases of #customtooltip and #tooltipdesc
