@@ -1,3 +1,8 @@
+# 1.24
+- Bump TOC Interface version for Retail, Classic, Cataclysm Classic and MoP Classic
+- Remove ConsolePort module
+  - ConsolePort now uses LibActionButton directly, so the LibActionButton module works with it
+
 # 1.23.1
 - Update DisableAddOn call to use C_AddOns namespace
 - Add Cataclysm Classic TOC Interface version
