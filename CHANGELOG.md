@@ -1,3 +1,8 @@
+# 1.25
+
+- Bump TOC Interface version for Retail, Classic, TBC Classic and MoP Classic
+- Add Classic TOC Interface versions for integration AddOns
+
 # 1.24
 
 - Bump TOC Interface version for Retail, Classic, Cataclysm Classic and MoP Classic
